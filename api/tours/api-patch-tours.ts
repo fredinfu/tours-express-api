@@ -12,7 +12,8 @@ export class PatchToursApi {
                 tourId: tourId,
                 tour_name: req.body.tour_name || originalTour.tour_name,
                 location: req.body.location || originalTour.location,
-                price: req.body.price || originalTour.price
+                price: req.body.price || originalTour.price,
+                img: originalTour.img
             };
 
             DataStore.Tours[tourIndex] = newTour;

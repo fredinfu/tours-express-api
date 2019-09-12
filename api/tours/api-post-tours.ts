@@ -8,7 +8,8 @@ export class PostToursApi {
             tourId: uuid(),
             tour_name: req.body.tour_name || "",
             location: req.body.location || "",
-            price: req.body.price || ""
+            price: req.body.price || "",
+            img: []
         };
     
         DataStore.Tours.push(newTour);

@@ -5,19 +5,22 @@ const tours = [
         tourId: "1",
         location: "France",
         tour_name: "Paris",
-        price: 99
+        price: 99,
+        img: ["paris.jpg"]
     },
     {
         tourId: "2",
         location: "England",
         tour_name: "London",
-        price: 91
+        price: 91,
+        img: ["london.jpg"]
     },
     {
         tourId: "3",
         location: "Honduras",
         tour_name: "Roatan",
-        price: 999
+        price: 999,
+        img: ["roatan.jpg"]
     }
 ];
 const reviews = [

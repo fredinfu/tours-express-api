@@ -19,7 +19,8 @@ export const addTour: RequestHandler = (req, res, next) => {
         tourId: uuid(),
         tour_name: req.body.tour_name || "",
         location: req.body.location || "",
-        price: req.body.price || ""
+        price: req.body.price || "",
+        img: []
     };
 
     DataStore.Tours.push(newTour);
@@ -58,7 +59,8 @@ export const updateTour: RequestHandler = (req, res, next) => {
             tourId: tourId,
             tour_name: req.body.tour_name || "",
             location: req.body.location || "",
-            price: req.body.price || ""
+            price: req.body.price || "",
+            img: []
         };
 
         DataStore.Tours[tourIndex] = newTour;
@@ -78,7 +80,8 @@ export const patchTour: RequestHandler = (req, res, next) => {
             tourId: tourId,
             tour_name: req.body.tour_name || originalTour.tour_name,
             location: req.body.location || originalTour.location,
-            price: req.body.price || originalTour.price
+            price: req.body.price || originalTour.price,
+            img: originalTour.img
         };
 
         DataStore.Tours[tourIndex] = newTour;
@@ -94,7 +97,7 @@ const getTourDetail = (id: any) => {
 
     if ( selectedTour ) {
         const selectedReviews = DataStore.Reviews.filter((item: any) => item.tourId == id);
-        const res = new TourDetail(selectedTour, selectedReviews);
+        const res = new TourDetail(selectedTour, selectedReviews, selectedTour.img);
         return res;
     }
 

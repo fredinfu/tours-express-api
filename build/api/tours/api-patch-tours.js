@@ -14,7 +14,8 @@ PatchToursApi.updateTour = (req, res, next) => {
             tourId: tourId,
             tour_name: req.body.tour_name || originalTour.tour_name,
             location: req.body.location || originalTour.location,
-            price: req.body.price || originalTour.price
+            price: req.body.price || originalTour.price,
+            img: originalTour.img
         };
         data_1.DataStore.Tours[tourIndex] = newTour;
         response = { "status": "success", "message": "Tour updated!", "data": newTour };

@@ -13,7 +13,8 @@ PutToursApi.updateTour = (req, res, next) => {
             tourId: tourId,
             tour_name: req.body.tour_name || "",
             location: req.body.location || "",
-            price: req.body.price || 0
+            price: req.body.price || 0,
+            img: []
         };
         data_1.DataStore.Tours[tourIndex] = newTour;
         response = { "status": "success", "message": "Tour updated!", "data": newTour };

@@ -1,18 +1,30 @@
 import express from "express";
 import * as bodyparser from "body-parser";
+import morgan from "morgan";
 import { apiGetTours, apiGetTourDetail, addTour, deleteTour, updateTour } from "./api/tours/api-functions-tours";
 import { GetToursApi } from "./api/tours/api-get-tours";
 import { PostToursApi } from "./api/tours/api-post-tours";
 import { PutToursApi } from "./api/tours/api-put-tours";
 import { DeleteToursApi } from "./api/tours/api-delete-tours";
 import { PatchToursApi } from "./api/tours/api-patch-tours";
+import { CustomRequestHandler } from "./model/express";
+import path from "path";
 
 const jsonParser = bodyparser.json();
+const urlEncodedParser = bodyparser.urlencoded({ extended: true });
+const logger = morgan("dev");
 
 
 const PORT = process.env.PORT || 8091;
 const app = express();
 
+const authenticator: CustomRequestHandler = (req, res, next) => {
+    const username = "FFUNEZ";
+    req.user
+}
+
+app.use(logger);
+app.use("/static", express.static(path.resolve("./", "public", "img")));
 //get class
 app.get("/tours", GetToursApi.getTours);
 app.get("/tours/:id", GetToursApi.getTourDetail);

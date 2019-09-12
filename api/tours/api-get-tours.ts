@@ -3,6 +3,8 @@ import { RequestHandler } from "express-serve-static-core";
 import uuid from "uuid/v4";
 import { TourSummary } from "../../model/shared/tour-summary";
 import { TourDetail } from "../../model/shared/tour-detail";
+import { fileMapper } from "../../general/static";
+import { Request } from "express";
 
 export class GetToursApi {
     static getTours: RequestHandler = (req, res, next) => {
@@ -11,63 +13,18 @@ export class GetToursApi {
 
     static getTourDetail: RequestHandler = (req, res, next) => {
         const tourId = req.params.id;
-        res.json(getTourDetail(tourId));
+        res.json(getTourDetail(req, tourId));
     }
 
 }
 
-export const apiGetTours: RequestHandler = (req, res, next) => {
-    res.json(DataStore.Tours.map((item: any) => new TourSummary(item)));
-}
-
-export const apiGetTourDetail: RequestHandler = (req, res, next) => {
-    const tourId = req.params.id;
-    const response = getTourDetail(tourId);
-    res.json(response);
-}
-
-export const addTour: RequestHandler = (req, res, next) => {
-    const newTour = {
-        tourId: uuid(),
-        tour_name: req.body.tour_name || "",
-        location: req.body.location || "",
-        price: req.body.price || ""
-    };
-
-    DataStore.Tours.push(newTour);
-
-    const response = {
-        status: "success",
-        message: "New Tour Added!",
-        data: newTour
-    }
-
-    res.json(response);
-}
-
-export const deleteTour: RequestHandler = (req, res, next) => {
-    const tourId = req.params.id;
-    const tourIndex = DataStore.Tours.findIndex((item: any) => item.tourId == tourId);
-    let response = { "status": "failed", "message": "Tour not found" };
-
-    if ( tourIndex > -1 ) {
-        DataStore.Tours.splice(tourIndex, 1);
-        response = { "status": "success", "message": "Tour removed!" };
-        res.json(response);
-        return;
-    }
-
-    res.json(response);
-
-}
-
-
-const getTourDetail = (id: any) => {
+const getTourDetail = (req: Request, id: any) => {
     const selectedTour = DataStore.Tours.find(t => t.tourId == id);
 
     if ( selectedTour ) {
+        const imageUrls = selectedTour.img.map(fileMapper(req.app.get("env")));
         const selectedReviews = DataStore.Reviews.filter((item: any) => item.tourId == id);
-        const res = new TourDetail(selectedTour, selectedReviews);
+        const res = new TourDetail(selectedTour, selectedReviews, imageUrls);
         return res;
     }
 

@@ -13,7 +13,8 @@ PostToursApi.addTour = (req, res, next) => {
         tourId: v4_1.default(),
         tour_name: req.body.tour_name || "",
         location: req.body.location || "",
-        price: req.body.price || ""
+        price: req.body.price || "",
+        img: []
     };
     data_1.DataStore.Tours.push(newTour);
     const response = {

@@ -11,7 +11,8 @@ export class PutToursApi {
                 tourId: tourId,
                 tour_name: req.body.tour_name || "",
                 location: req.body.location || "",
-                price: req.body.price || 0
+                price: req.body.price || 0,
+                img: []
             };
 
             DataStore.Tours[tourIndex] = newTour;

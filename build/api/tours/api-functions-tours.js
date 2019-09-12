@@ -20,7 +20,8 @@ exports.addTour = (req, res, next) => {
         tourId: v4_1.default(),
         tour_name: req.body.tour_name || "",
         location: req.body.location || "",
-        price: req.body.price || ""
+        price: req.body.price || "",
+        img: []
     };
     data_1.DataStore.Tours.push(newTour);
     const response = {
@@ -51,7 +52,8 @@ exports.updateTour = (req, res, next) => {
             tourId: tourId,
             tour_name: req.body.tour_name || "",
             location: req.body.location || "",
-            price: req.body.price || ""
+            price: req.body.price || "",
+            img: []
         };
         data_1.DataStore.Tours[tourIndex] = newTour;
         response = { "status": "success", "message": "Tour updated!", "data": newTour };
@@ -68,7 +70,8 @@ exports.patchTour = (req, res, next) => {
             tourId: tourId,
             tour_name: req.body.tour_name || originalTour.tour_name,
             location: req.body.location || originalTour.location,
-            price: req.body.price || originalTour.price
+            price: req.body.price || originalTour.price,
+            img: originalTour.img
         };
         data_1.DataStore.Tours[tourIndex] = newTour;
         response = { "status": "success", "message": "Tour updated!", "data": newTour };
@@ -79,7 +82,7 @@ const getTourDetail = (id) => {
     const selectedTour = data_1.DataStore.Tours.find(t => t.tourId == id);
     if (selectedTour) {
         const selectedReviews = data_1.DataStore.Reviews.filter((item) => item.tourId == id);
-        const res = new tour_detail_1.TourDetail(selectedTour, selectedReviews);
+        const res = new tour_detail_1.TourDetail(selectedTour, selectedReviews, selectedTour.img);
         return res;
     }
     const res = { "status": "failed", "message": "Element not found" };
