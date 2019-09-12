@@ -1,4 +1,4 @@
-import { DataStore } from "../../data/data";
+import { DataStore } from "../../../data/data";
 import { RequestHandler } from "express-serve-static-core";
 import uuid from "uuid/v4";
 

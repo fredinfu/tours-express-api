@@ -1,9 +1,9 @@
-import { DataStore } from "../../data/data";
+import { DataStore } from "../../../data/data";
 import { RequestHandler } from "express-serve-static-core";
 import uuid from "uuid/v4";
-import { TourSummary } from "../../model/shared/tour-summary";
-import { TourDetail } from "../../model/shared/tour-detail";
-import { fileMapper } from "../../general/static";
+import { TourSummary } from "../../../model/shared/tour-summary";
+import { TourDetail } from "../../../model/shared/tour-detail";
+import { fileMapper } from "../general/static";
 import { Request } from "express";
 
 export class GetToursApi {

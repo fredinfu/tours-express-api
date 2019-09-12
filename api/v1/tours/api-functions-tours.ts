@@ -1,7 +1,7 @@
 import { RequestHandler } from "express-serve-static-core";
-import { DataStore } from "../../data/data";
-import { TourSummary } from "../../model/shared/tour-summary";
-import { TourDetail } from "../../model/shared/tour-detail";
+import { DataStore } from "../../../data/data";
+import { TourSummary } from "../../../model/shared/tour-summary";
+import { TourDetail } from "../../../model/shared/tour-detail";
 import uuid from "uuid/v4";
 
 export const apiGetTours: RequestHandler = (req, res, next) => {

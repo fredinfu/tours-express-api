@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const data_1 = require("../../data/data");
-const tour_detail_1 = require("../../model/shared/tour-detail");
+const data_1 = require("../../../data/data");
+const tour_detail_1 = require("../../../model/shared/tour-detail");
 const static_1 = require("../general/static");
 class GetToursApi {
 }

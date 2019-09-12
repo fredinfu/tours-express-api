@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { DataStore } from "../../data/data";
+import { DataStore } from "../../../data/data";
 
 export class DeleteToursApi {
     static deleteTour: RequestHandler = (req, res, next) => {
