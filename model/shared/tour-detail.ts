@@ -4,6 +4,7 @@ import { Review } from "./review";
 export class TourDetail extends TourSummary {
     location: string;
     price: number;
+    currency: string;
     reviews: Review[];
     img: string[];
     /**
@@ -13,6 +14,7 @@ export class TourDetail extends TourSummary {
         super(tourData);
         this.location = tourData.location;
         this.price = tourData.price;
+        this.currency = tourData.currency;
         this.reviews = reviewsData.map((review: any) => new Review(review));
         this.img = tourImages;
     }

@@ -10,6 +10,7 @@ class TourDetail extends tour_summary_1.TourSummary {
         super(tourData);
         this.location = tourData.location;
         this.price = tourData.price;
+        this.currency = tourData.currency;
         this.reviews = reviewsData.map((review) => new review_1.Review(review));
         this.img = tourImages;
     }

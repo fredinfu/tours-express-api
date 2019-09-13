@@ -5,13 +5,14 @@ import { PostToursApi } from "./api-post-tours";
 import { PutToursApi } from "./api-put-tours";
 import { PatchToursApi } from "./api-patch-tours";
 import { DeleteToursApi } from "./api-delete-tours";
-import { apiGetTours, apiGetTourDetail, addTour, deleteTour, updateTour } from "./api-functions-tours";
+import { checkTourFilters } from "./api-tours-filter";
 import { jsonParser } from "../general/exports/body-parser";
+import { apiErrorHandler } from "../general/error-handling";
 
 export let ToursRouter = Router();
 
 ToursRouter.route("/")
-    .get(GetToursApi.getTours)
+    .get(checkTourFilters, GetToursApi.getTours)
     .post(jsonParser, PostToursApi.addTour);
 
 ToursRouter.route("/:id")
@@ -19,6 +20,8 @@ ToursRouter.route("/:id")
     .put(jsonParser, PutToursApi.updateTour)
     .patch(jsonParser, PatchToursApi.updateTour)
     .delete(DeleteToursApi.deleteTour);
+
+
 
 // //get class
 // ToursRouter.get("/", GetToursApi.getTours);

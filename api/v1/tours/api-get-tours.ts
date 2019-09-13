@@ -5,10 +5,22 @@ import { TourSummary } from "../../../model/shared/tour-summary";
 import { TourDetail } from "../../../model/shared/tour-detail";
 import { fileMapper } from "../general/static";
 import { Request } from "express";
+import { db } from "../../../db/db";
+import { TourFilters } from "../../../model/shared/tour-filters";
 
 export class GetToursApi {
     static getTours: RequestHandler = (req, res, next) => {
-        res.json(DataStore.Tours);
+
+        
+        console.log('query: ',req.query);
+        const filters = new TourFilters(req.query);
+        const query = "SELECT * FROM tours WHERE ${condition:raw}";
+        db.any(query, {condition: filters.getCondition})
+            .then(tours => {
+                res.json(tours.map((item: any) => new TourSummary(item)));
+            } )
+            .catch(err => {console.log("error: ",err)});
+
     }
 
     static getTourDetail: RequestHandler = (req, res, next) => {

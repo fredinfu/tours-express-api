@@ -6,10 +6,11 @@ const api_post_tours_1 = require("./api-post-tours");
 const api_put_tours_1 = require("./api-put-tours");
 const api_patch_tours_1 = require("./api-patch-tours");
 const api_delete_tours_1 = require("./api-delete-tours");
+const api_tours_filter_1 = require("./api-tours-filter");
 const body_parser_1 = require("../general/exports/body-parser");
 exports.ToursRouter = express_1.Router();
 exports.ToursRouter.route("/")
-    .get(api_get_tours_1.GetToursApi.getTours)
+    .get(api_tours_filter_1.checkTourFilters, api_get_tours_1.GetToursApi.getTours)
     .post(body_parser_1.jsonParser, api_post_tours_1.PostToursApi.addTour);
 exports.ToursRouter.route("/:id")
     .get(api_get_tours_1.GetToursApi.getTourDetail)
