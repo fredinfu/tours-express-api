@@ -5,7 +5,8 @@
   "main": "server.ts",
   "scripts": {
     "server": "tsc && node build/server.js",
-    "start": "nodemon -e ts -w ./ -x npm run server"
+    "update-schema": "schemats generate --config schemats.json -o db/db-models.ts",
+    "start": "npm run update-schema && nodemon -e ts -w ./ -x npm run server"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "pg-promise": "^9.1.4",
+    "schemats": "^3.0.3",
     "uuid": "^3.3.3"
   }
 }

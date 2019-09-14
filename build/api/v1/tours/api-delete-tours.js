@@ -4,7 +4,6 @@ const data_1 = require("../../../data/data");
 const messages_1 = require("../../../model/shared/messages");
 class DeleteToursApi {
 }
-exports.DeleteToursApi = DeleteToursApi;
 DeleteToursApi.deleteTour = (req, res, next) => {
     const tourId = req.params.id;
     const tourIndex = data_1.DataStore.Tours.findIndex((item) => item.tourId == tourId);
@@ -19,3 +18,4 @@ DeleteToursApi.deleteTour = (req, res, next) => {
     res.json(new messages_1.PublicInfo("Tour deleted", 200));
     //res.json(response);
 };
+exports.DeleteToursApi = DeleteToursApi;

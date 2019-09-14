@@ -8,7 +8,6 @@ const v4_1 = __importDefault(require("uuid/v4"));
 const messages_1 = require("../../../model/shared/messages");
 class PostToursApi {
 }
-exports.PostToursApi = PostToursApi;
 PostToursApi.addTour = (req, res, next) => {
     const requiredFields = ["tour_name", "location"];
     const givenFields = Object.getOwnPropertyNames(req.body);
@@ -32,3 +31,4 @@ PostToursApi.addTour = (req, res, next) => {
     res.json(new messages_1.PublicInfo("Tour added", 200, { data: newTour }));
     //res.json(response);
 };
+exports.PostToursApi = PostToursApi;

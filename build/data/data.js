@@ -81,6 +81,6 @@ const reviews = [
 ];
 class DataStore {
 }
-exports.DataStore = DataStore;
 DataStore.Tours = tours;
 DataStore.Reviews = reviews;
+exports.DataStore = DataStore;

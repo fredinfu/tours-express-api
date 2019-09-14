@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const data_1 = require("../../../data/data");
 class PatchToursApi {
 }
-exports.PatchToursApi = PatchToursApi;
 PatchToursApi.updateTour = (req, res, next) => {
     const tourId = req.params.id;
     const tourIndex = data_1.DataStore.Tours.findIndex((item) => item.tourId == tourId);
@@ -22,3 +21,4 @@ PatchToursApi.updateTour = (req, res, next) => {
         res.json(response);
     }
 };
+exports.PatchToursApi = PatchToursApi;

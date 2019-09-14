@@ -7,6 +7,7 @@ import { fileMapper } from "../general/static";
 import { Request } from "express";
 import { db } from "../../../db/db";
 import { TourFilters } from "../../../model/shared/tour-filters";
+import * as dbModel from "./../../../db/db-models";
 
 export class GetToursApi {
     static getTours: RequestHandler = (req, res, next) => {
@@ -16,7 +17,7 @@ export class GetToursApi {
         const filters = new TourFilters(req.query);
         const query = "SELECT * FROM tours WHERE ${condition:raw}";
         db.any(query, {condition: filters.getCondition})
-            .then(tours => {
+            .then((tours: dbModel.tours[]) => {
                 res.json(tours.map((item: any) => new TourSummary(item)));
             } )
             .catch(err => {console.log("error: ",err)});
