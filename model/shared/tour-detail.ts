@@ -1,5 +1,6 @@
 import { TourSummary } from "./tour-summary";
 import { Review } from "./review";
+import * as dbModel from "./../../db/db-models";
 
 export class TourDetail extends TourSummary {
     location: string;
@@ -10,7 +11,7 @@ export class TourDetail extends TourSummary {
     /**
      *
      */
-    constructor(tourData: any, reviewsData: any, tourImages: string[]) {
+    constructor(tourData: dbModel.tours, reviewsData: dbModel.reviews[], tourImages: string[]) {
         super(tourData);
         this.location = tourData.location;
         this.price = tourData.price;

@@ -11,6 +11,7 @@ export class PostToursApi {
         const givenFields = Object.getOwnPropertyNames(req.body);
         console.log('body: ',req.body);
         if(!requiredFields.every(field => givenFields.includes(field))) {
+            return next(ApiError.errNotFound());
             return next(new ApiError("Data missing", "Not all required fields", 400));
         }
 
